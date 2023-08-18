@@ -10,5 +10,5 @@ Membuat sebuah sistem dimana pengguna dapat mendaftar sebagai Super Admin dan Cu
 
 ## Deploy
 
-Aplikasi di platform [Railway](https://railway.app/) <br/>
-Click [Link](https://agros-fs-mini-test-be-production.up.railway.app) to open the app
+Aplikasi di deploy pada platform [Railway](https://railway.app/){:target="_blank"} <br/>
+Klik [Link](https://agros-fs-mini-test-be-production.up.railway.app){:target="_blank"} untuk membuka aplikasi
