@@ -25,6 +25,12 @@ Route::get('/refresh', [AuthController::class, 'refresh']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/profile', [UserController::class, 'profile']);
+    Route::put('/profile', [UserController::class, 'updateProfile']);
+    Route::middleware(['role:super admin'])->group(function () {
+        Route::post('/users', [UserController::class, 'create']);
+        Route::put('/users/{id}', [UserController::class, 'update']);
+        Route::delete('/users/{id}', [UserController::class, 'delete']);
+    });
 });
 
 Route::get('/test', function () {

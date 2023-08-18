@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\CreateUserRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,7 @@ class AuthController extends Controller
             'status' => 'success',
             'message' => 'User created successfully',
             'data' => $user->only(['name', 'email', 'city', 'role']),
-        ], 201);
+        ], Response::HTTP_CREATED);
     }
 
     public function login(LoginRequest $request)
@@ -36,7 +37,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Unauthorized',
-            ], 401);
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         //kirim data user dan token ke client sebagai response dari request yang berhasil
@@ -48,7 +49,7 @@ class AuthController extends Controller
                 'user' => auth()->user()->only(['name', 'email', 'city', 'role']),
                 'token' => $this->respondWithToken($token),
             ],
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     public function refresh()
@@ -59,7 +60,7 @@ class AuthController extends Controller
             'data' => [
                 'token' => $this->respondWithToken(auth()->refresh()),
             ],
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     public function logout()
@@ -69,7 +70,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Logout success',
-        ], 200);
+        ], Response::HTTP_OK);
     }
 
     protected function respondWithToken($token)

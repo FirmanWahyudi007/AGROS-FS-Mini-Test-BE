@@ -3,13 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
-class CreateUserRequest extends FormRequest
+
+class ProfileUpdateRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -18,12 +19,10 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|unique:users,email',
-            'name' => 'required|string',
-            'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|string|same:password',
-            'city' => 'required|string',
-            'role' => 'required|string|in:customer,super admin',
+            'email' => ['email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
+            'name' => ['string', 'max:255'],
+            'password' => ['string', 'min:8'],
+            'city' => ['string', 'max:255'],
         ];
     }
 
