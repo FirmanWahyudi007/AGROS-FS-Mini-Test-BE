@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/refresh', [AuthController::class, 'refresh']);
 
 Route::middleware(['auth:api'])->group(function () {
