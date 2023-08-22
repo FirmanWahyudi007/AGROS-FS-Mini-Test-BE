@@ -22,7 +22,7 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
             'name' => ['string', 'max:255'],
             //password tidak waajib diisi
-            'password' => ['string', 'min:8', 'confirmed'],
+            'password' => ['string', 'min:8'],
             'city' => ['string', 'max:255'],
         ];
     }
