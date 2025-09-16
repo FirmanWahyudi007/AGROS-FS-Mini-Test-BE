@@ -31,7 +31,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 COPY docker/entrypoint.sh /usr/local/bin/laravel-entrypoint
 RUN chmod +x /usr/local/bin/laravel-entrypoint
 
-WORKDIR /var/www/html
+WORKDIR /site/www/agros
 EXPOSE 9000
 
 ENTRYPOINT ["laravel-entrypoint"]

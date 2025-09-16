@@ -17,7 +17,7 @@ for i in {1..60}; do
   fi
 done
 
-cd /var/www/html
+cd /site/www/agros
 
 # 1) Composer install (sekali saja)
 if [ ! -f vendor/autoload.php ]; then
